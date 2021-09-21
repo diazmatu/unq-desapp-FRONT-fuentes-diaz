@@ -1,0 +1,9 @@
+language: java
+
+java:
+  - 8.0
+
+before_script:
+  "skip"
+script:
+  "skip"
