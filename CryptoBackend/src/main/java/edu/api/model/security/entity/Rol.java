@@ -1,5 +1,6 @@
 package edu.api.model.security.entity;
 
+import edu.api.model.security.*;
 import edu.api.model.security.enums.RolName;
 
 import javax.persistence.*;
