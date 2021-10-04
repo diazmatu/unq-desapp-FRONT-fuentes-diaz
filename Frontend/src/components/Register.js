@@ -103,6 +103,7 @@ const Register = () => {
           </div>
 
           <div className="form-group">
+<<<<<<< HEAD
             <label>Username</label>
             <input
                 name="userName"
@@ -114,6 +115,8 @@ const Register = () => {
           </div>
 
           <div className="form-group">
+=======
+>>>>>>> cd6853c (Login and Register react)
             <label>Email</label>
             <input
                 name="email"
