@@ -1,4 +1,4 @@
-package edu.api.model.entity;
+package edu.api.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -6,6 +6,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class DollarPrice {
     private String d;
     private Float v;
+
+    public DollarPrice() {
+    }
+
+    public DollarPrice(String d, Float v) {
+        this.d = d;
+        this.v = v;
+    }
 
     public String getD() {
         return d;

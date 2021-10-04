@@ -1,9 +1,17 @@
-package edu.api.model.entity;
+package edu.api.model.dto;
 
 public class Crypto {
     String symbol;
     Float price;
     String lastUpdate;
+
+    public Crypto() {
+    }
+
+    public Crypto(String symbol, float v) {
+        this.symbol = symbol;
+        this.price = v;
+    }
 
     public String getSymbol() {
         return symbol;

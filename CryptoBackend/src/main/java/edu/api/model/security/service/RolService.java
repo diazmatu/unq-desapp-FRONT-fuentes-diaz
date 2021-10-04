@@ -1,7 +1,7 @@
 package edu.api.model.security.service;
 
 import edu.api.model.security.entity.Rol;
-import edu.api.model.security.enums.RolName;
+import edu.api.model.enums.RolName;
 import edu.api.model.security.repository.RolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

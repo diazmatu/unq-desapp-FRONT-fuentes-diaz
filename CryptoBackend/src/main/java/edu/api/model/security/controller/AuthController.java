@@ -6,7 +6,7 @@ import edu.api.model.security.dto.LoginUser;
 import edu.api.model.security.dto.RegisterUser;
 import edu.api.model.security.entity.Rol;
 import edu.api.model.security.entity.User;
-import edu.api.model.security.enums.RolName;
+import edu.api.model.enums.RolName;
 import edu.api.model.security.jwt.JwtProvider;
 import edu.api.model.security.service.RolService;
 import edu.api.model.security.service.UserService;
@@ -50,13 +50,12 @@ public class AuthController {
     public ResponseEntity<?> nuevo(@Valid @RequestBody RegisterUser registerUser, BindingResult bindingResult){
         if(bindingResult.hasErrors())
             return new ResponseEntity(new Message("invalid mail or wrong information"), HttpStatus.BAD_REQUEST);
-        if(userService.existsByUserName(registerUser.getUserName()))
+        if(userService.existsByUserName(registerUser.getLastName()))
             return new ResponseEntity(new Message("user name in use"), HttpStatus.BAD_REQUEST);
         if(userService.existsByEmail(registerUser.getEmail()))
             return new ResponseEntity(new Message("mail in use"), HttpStatus.BAD_REQUEST);
         User user =
-                new User(registerUser.getName(), registerUser.getUserName(), registerUser.getEmail(),
-                        passwordEncoder.encode(registerUser.getPassword()));
+                new User(registerUser.getName(), registerUser.getLastName(),registerUser.getUserName(), registerUser.getEmail(),passwordEncoder.encode(registerUser.getPassword()),registerUser.getDirection(),registerUser.getCvu(),registerUser.getWallet());
         Set<Rol> roles = new HashSet<>();
         roles.add(rolService.getByRolName(RolName.ROLE_USER).get());
         if(registerUser.getRols().contains("admin"))

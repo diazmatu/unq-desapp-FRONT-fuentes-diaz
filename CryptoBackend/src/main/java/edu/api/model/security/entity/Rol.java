@@ -1,7 +1,6 @@
 package edu.api.model.security.entity;
 
-import edu.api.model.security.*;
-import edu.api.model.security.enums.RolName;
+import edu.api.model.enums.RolName;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

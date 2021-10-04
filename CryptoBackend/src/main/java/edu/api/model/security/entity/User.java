@@ -13,12 +13,21 @@ public class User {
     @NotNull
     private String name;
     @NotNull
+    private String lastName;
+    @NotNull
     @Column(unique = true)
     private String userName;
     @NotNull
     private String email;
     @NotNull
     private String password;
+    @NotNull
+    private String direction;
+    @NotNull
+    private String cvu;
+    @Column(unique = true)
+    @NotNull
+    private String wallet;
     @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_rol", joinColumns = @JoinColumn(name = "user_id"),
@@ -28,11 +37,47 @@ public class User {
     public User() {
     }
 
-    public User(@NotNull String name, @NotNull String userName, @NotNull String email, @NotNull String password) {
+    public User(@NotNull String name,@NotNull String lastName,@NotNull String userName,@NotNull String email,@NotNull String password,@NotNull String direction,@NotNull String cvu,@NotNull String wallet) {
         this.name = name;
+        this.lastName = lastName;
         this.userName = userName;
         this.email = email;
         this.password = password;
+        this.direction = direction;
+        this.cvu = cvu;
+        this.wallet = wallet;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public String getCvu() {
+        return cvu;
+    }
+
+    public void setCvu(String cvu) {
+        this.cvu = cvu;
+    }
+
+    public String getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(String wallet) {
+        this.wallet = wallet;
     }
 
     public int getId() {
@@ -51,12 +96,12 @@ public class User {
         this.name = name;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
