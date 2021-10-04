@@ -18,6 +18,10 @@ const Register = () => {
         .required('Surname is required')
         .min(10, 'Surname must be at least 10 characters')
         .max(30, 'Surname must not exceed 30 characters'),
+    userName: Yup.string()
+        .required('User name is required')
+        .min(10, 'User name must be at least 10 characters')
+        .max(30, 'User name must not exceed 30 characters'),
     email: Yup.string()
         .required('Email is required')
         .email('Email is invalid'),
@@ -96,6 +100,17 @@ const Register = () => {
                 className={`form-control ${errors.surname ? 'is-invalid' : ''}`}
             />
             <div className="invalid-feedback">{errors.surname?.message}</div>
+          </div>
+
+          <div className="form-group">
+            <label>Username</label>
+            <input
+                name="userName"
+                type="text"
+                {...register('userName')}
+                className={`form-control ${errors.userName ? 'is-invalid' : ''}`}
+            />
+            <div className="invalid-feedback">{errors.userName?.message}</div>
           </div>
 
           <div className="form-group">
