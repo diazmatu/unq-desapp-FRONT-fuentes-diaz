@@ -1,12 +1,8 @@
 language: java
 
-java:
-  - 8.0
+jdk:
+  - oraclejdk8
+  - openjdk7
 
-before_script:
-  "skip"
-script:
-  java AuthControllerTest.java
-  java CryptoControllerTest.java
-  java CryptoServiceTest.java
-  java UserServiceTest.java
+before_install:
+  - cd java
