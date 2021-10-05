@@ -18,7 +18,7 @@ const register = (userData) => {
 
 const login = (username, password) => {
   return axios
-    .post(API_URL + "login", {    
+    .post(API_URL + "login", {
       "userName" : username,
       "password" : password  
     })
