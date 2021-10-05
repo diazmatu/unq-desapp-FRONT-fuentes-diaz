@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useForm } from 'react-hook-form';
+import {useHistory} from "react-router-dom";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
 import AuthService from "../services/auth.service";
 
 const Register = () => {
+  const history = useHistory();
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -62,6 +64,8 @@ const Register = () => {
           (response) => {
             setMessage(response.data.message);
             setSuccessful(true);
+            history.push("/activeCripto")
+            window.location.reload();
           },
           (error) => {
             const resMessage =

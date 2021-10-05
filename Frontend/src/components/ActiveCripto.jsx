@@ -1,40 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React,{useEffect,useState} from 'react'
+import {Cripto} from './Cripto'
 
 import UserService from "../services/user.service";
-import EventBus from "../common/EventBus";
 
-const BoardAdmin = () => {
-  const [content, setContent] = useState("");
-
-  useEffect(() => {
-    UserService.getAdminBoard().then(
-      (response) => {
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
-        setContent(_content);
-
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
+const ActiveCripto = () => {    
+    const [currentCriptos, setCurrentCriptos]= useState([])
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            const cripto = await UserService.getActiveCriptos()
+            console.log(cripto)
+            setCurrentCriptos(cripto.data)                             
         }
-      }
-    );
-  }, []);
+        fetchData()
+    }, [setCurrentCriptos])
 
-  return (
-    <div className="container">
-      <header className="jumbotron">
-        <h3>{content}</h3>
-      </header>
-    </div>
-  );
-};
+    return (
+        <div className='criptos-container'>
+            {currentCriptos.map( cripto =>
+                <div className="App-header" key = {cripto.symbol}>
+                    <Cripto
+                        name={cripto.symbol}
+                        price={cripto.price}
+                        date={cripto.lastUpdate}
+                    />
+                </div>
+            )}    
+        </div>
+    )
+}
 
-export default BoardAdmin;
+export default ActiveCripto
