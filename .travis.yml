@@ -1,10 +1,3 @@
 language: java
-
-jdk:
-  - openjdk8
-
-script:
-  - AuthControllerTest.java
-  - CryptoControllerTest.java
-  - CryptoServiceTest.java
-  - UserServiceTest.java
+sudo: false
+script: mvn clean verify
