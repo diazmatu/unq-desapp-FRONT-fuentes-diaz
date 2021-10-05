@@ -10,11 +10,12 @@ All notable changes to this project will be documented in this file.
 ## [1.0.0] - 2021-10-05
 ### Added
 - Login & Register pages.
+- Double register verification.
 - JWT security.
 - Log Out.
 - Two visual identity for errors in the forms by [@tylerfortune8](https://github.com/diazmatu).
 - Navigation bar.
-- Configured comunication with Crypto's last currency
+- Configured comunication with Crypto's last currency.
 
 ### Changed
 
