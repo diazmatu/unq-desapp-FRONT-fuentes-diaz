@@ -1,5 +1,0 @@
-language: java
-jdk: 
-  - openjdk16
-sudo: false
-script: mvn clean verify
