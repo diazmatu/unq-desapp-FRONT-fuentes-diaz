@@ -24,10 +24,8 @@ import java.util.stream.Collectors;
 @CrossOrigin
 public class CryptoController {
 
-
     @Autowired
     CryptoService cryptoService = new CryptoService();
-
 
     @GetMapping("/crypts")
     public ResponseEntity<List<Crypto>> getCrypts() throws JsonProcessingException {
@@ -47,6 +45,4 @@ public class CryptoController {
         }
         return new ResponseEntity<Crypto>(active, HttpStatus.OK);
     }
-
-
 }
