@@ -3,5 +3,5 @@ jdk:
   - openjdk16
 sudo: false
 script:
-  - cd /CryptoBackend 
+  - cd CryptoBackend 
   - mvn clean verify
