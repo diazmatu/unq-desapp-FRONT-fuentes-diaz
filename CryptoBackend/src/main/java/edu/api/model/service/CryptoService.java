@@ -28,6 +28,9 @@ public class CryptoService {
     public List<Crypto> getAllCryptsFromApi(){
         try {
             ResponseEntity<List<Crypto>> all = restTemplate.exchange("https://api1.binance.com/api/v3/ticker/price", HttpMethod.GET, null, new ParameterizedTypeReference<List<Crypto>>() {});
+            if (all.getStatusCode() == HttpStatus.BAD_REQUEST){
+                return null;
+            }
             List<Crypto> result = all.getBody();
             List<Crypto> finish = result.stream().filter(x -> Arrays.stream(CryptoName.values()).anyMatch(c -> c.toString().equals(x.getSymbol()))).collect(Collectors.toList());
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -41,16 +44,16 @@ public class CryptoService {
     }
 
     public Crypto getCryptFromApi(String name){
-        try {
             ResponseEntity<Crypto> active = restTemplate.getForEntity("https://api1.binance.com/api/v3/ticker/price?symbol=" + name, Crypto.class);
+            if (active.getStatusCode() == HttpStatus.BAD_REQUEST){
+                return null;
+            }
             Crypto body = active.getBody();
             body.setPrice(body.getPrice() * this.getDollarPriceNow().getV());
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             body.setLastUpdate(dtf.format(LocalDateTime.now()));
             return body;
-        }catch (HttpClientErrorException.BadRequest e){
-            return null;
-        }
+
     }
 
     public DollarPrice getDollarPriceNow(){

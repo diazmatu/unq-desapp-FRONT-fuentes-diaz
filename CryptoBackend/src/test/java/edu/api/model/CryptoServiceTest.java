@@ -6,7 +6,9 @@ import edu.api.model.service.CryptoService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.runner.RunWith;
 import org.mockito.*;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -19,11 +21,9 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-@AutoConfigureWebClient(registerRestTemplate = true)
-@RestClientTest(Service.class)
+@RunWith(MockitoJUnitRunner.class)
 public class CryptoServiceTest {
 
-    @Spy
     @Mock
     RestTemplate restTemplate = Mockito.mock(RestTemplate.class);
 
@@ -104,7 +104,7 @@ public class CryptoServiceTest {
                 .thenReturn(dollarResponse);
 
         List<Crypto> result = cryptoService.getAllCryptsFromApi();
-        Assert.assertEquals(result.size(), 14); //HARDCODEADO, ERROR AL MOCKEAR RESPUESTA
+        Assert.assertEquals(result.size(), 1);
     }
 
 }
