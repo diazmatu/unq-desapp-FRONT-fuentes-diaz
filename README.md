@@ -12,8 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2021-10-05
 ### Added
-- New visual identity by [@tylerfortune8](https://github.com/tylerfortune8).
-- Version navigation.
+- Login & Register pages.
+- JWT security.
+- Log Out.
+- Two visual identity for errors in the forms by [@tylerfortune8](https://github.com/diazmatu).
+- Navigation bar.
+- Configured comunication with Crypto's last currency
 
 ### Changed
 
