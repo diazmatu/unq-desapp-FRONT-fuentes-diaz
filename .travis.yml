@@ -2,6 +2,15 @@ language: java
 jdk: 
   - openjdk16
 sudo: false
+addons:
+  sonarcloud:
+    organization: "jeremiasfuentes"
+    token:
+      secure: "**************************" # encrypted value of your token
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 script:
   - cd CryptoBackend 
   - mvn clean verify
