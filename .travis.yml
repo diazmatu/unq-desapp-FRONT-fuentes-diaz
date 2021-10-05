@@ -6,4 +6,7 @@ java:
 before_script:
   "skip"
 script:
-  "skip"
+  java AuthControllerTest.java
+  java CryptoControllerTest.java
+  java CryptoServiceTest.java
+  java UserServiceTest.java
