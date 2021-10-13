@@ -3,17 +3,18 @@ import axios from "axios";
 const API_URL = "http://localhost:8080/auth/";
 
 const register = (userData) => {
+  console.log(userData)
   return axios
     .post(API_URL + "register", {
-      "name": userData.name,
-      "lastName": userData.surName,
-      "userName": userData.userName,
-      "email": userData.email,
-      "password": userData.password,
-      "direction": userData.address,
-      "cvu": userData.cvuMP,
-      "wallet": userData.criptoWallet,
-      "rols": ["user"]
+      "direction": "656565656556",
+      "wallet": "88888888",
+      "cvu": "1212121212121212121212",
+      "email": "matu_diaz_95@hotmail.com",
+      "name": "Matias Diaz",
+      "password": "Matias Diaz",
+      "lastName": "Matias Diaz",
+      "userName": "Matias Diaz",
+      "rols" : ["user"]
     });
 };
 

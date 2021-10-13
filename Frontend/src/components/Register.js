@@ -59,7 +59,7 @@ const Register = () => {
   });
 
   const onSubmit = userData => {
-
+    console.log(userData)
       AuthService.register(userData).then(
           (response) => {
             setMessage(response.data.message);
