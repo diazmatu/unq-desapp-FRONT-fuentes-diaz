@@ -3,18 +3,24 @@ import axios from "axios";
 const API_URL = "http://localhost:8080/auth/";
 
 const register = (userData) => {
-  console.log(userData)
   return axios
     .post(API_URL + "register", {
-      "direction": "656565656556",
-      "wallet": "88888888",
-      "cvu": "1212121212121212121212",
-      "email": "matu_diaz_95@hotmail.com",
-      "name": "Matias Diaz",
-      "password": "Matias Diaz",
-      "lastName": "Matias Diaz",
-      "userName": "Matias Diaz",
+      "direction": userData.address,
+      "wallet": userData.criptoWallet,
+      "cvu": userData.cvuMP,
+      "email": userData.email,
+      "name": userData.name,
+      "password": userData.password,
+      "lastName": userData.surname,
+      "userName": userData.userName,
       "rols" : ["user"]
+    })
+    .then((response) => {
+      debugger;
+      if (response.data.token) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+      }
+      return response.data;
     });
 };
 
@@ -25,12 +31,17 @@ const login = (username, password) => {
       "password" : password
     })
     .then((response) => {
-      if (response.data.accessToken) {
+      //debugger;
+      if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
 
       return response.data;
     });
+};
+
+const getUsers = () => {
+  return axios.get(API_URL + "users");
 };
 
 const logout = () => {
@@ -46,4 +57,5 @@ export default {
   login,
   logout,
   getCurrentUser,
+  getUsers
 };

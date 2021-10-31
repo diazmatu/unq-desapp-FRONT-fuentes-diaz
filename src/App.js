@@ -10,6 +10,9 @@ import Register from "./components/Register";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import ActiveCripto from "./components/ActiveCripto";
+import Users from "./components/Users";
+import ActivePublication from "./components/ActivePublication";
+
 
 import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
@@ -54,8 +57,20 @@ const App = () => {
 
             
               <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User
+                <Link to={"/users"} className="nav-link">
+                  Users
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to={"/activeCripto"} className="nav-link">
+                  Active Cripto
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to={"/activePublication"} className="nav-link">
+                  Publications
                 </Link>
               </li>
           </div>
@@ -64,7 +79,7 @@ const App = () => {
           <div className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link to={"/profile"} className="nav-link">
-                {currentUser.username}
+                {currentUser.userName}
               </Link>
             </li>
             <li className="nav-item">
@@ -97,6 +112,8 @@ const App = () => {
           <Route exact path="/register" component={Register} />
           <Route exact path="/profile" component={Profile} />
           <Route path="/activeCripto" component={ActiveCripto} />
+          <Route path="/activePublication" component={ActivePublication} />
+          <Route path="/users" component={Users} />
         </Switch>
       </div>
 

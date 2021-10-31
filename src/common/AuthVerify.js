@@ -12,9 +12,10 @@ const parseJwt = (token) => {
 const AuthVerify = (props) => {
   props.history.listen(() => {
     const user = JSON.parse(localStorage.getItem("user"));
+    //debugger;
 
     if (user) {
-      const decodedJwt = parseJwt(user.accessToken);
+      const decodedJwt = parseJwt(user.token);
 
       if (decodedJwt.exp * 1000 < Date.now()) {
         props.logOut();
