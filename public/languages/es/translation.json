@@ -1,0 +1,85 @@
+{
+    "language": "Lenguage",
+
+    
+
+    "_comment1": "NAVBAR",
+    "logOut": "Cerrar Sesion",
+    "logIn": "Iniciar Sesion",
+    "signUp": "Registrarse",
+    "home": "Inicio",
+    "publications": "Publicaciones",
+    "users": "Usuarios",
+    "activeCripto": "Cripto Activas",
+    
+
+
+    "_comment2": "LOGIN & REGISTER",
+    "register": "Registrarse",
+    "resetData": "Reset",
+    "required": "Este campo es requerido!",
+    "email": "Correo",
+    "password": "Contraseña",
+
+    "name": "Nombre",
+    "surname": "Apellido",
+    "userName": "Usuario",
+    "address": "Direccion",
+    "confirmPassword": "Confirmar Contraseña",
+    "cvuMP": "CVU MercadoPago",
+    "criptoWallet": "Billetera de Criptos",
+    "theCriptoWallet": "La Billetera de Criptos",
+    "acceptTerms": "Acepto los terminos",
+    "agreed": "He leido y acepto los",
+    "terms": "Terminos",
+    
+    "isRequired": " es requerido",
+    "isInvalid": " es invalido",
+    "notmatch": " no coinciden",
+    "least0": " tiene que tener al menos 0 caracteres",
+    "least6": " tiene que tener al menos 6 caracteres",
+    "least10": " tiene que tener al menos 10 caracteres",
+    "exceed30": " no puede exceder los 30 caracteres",
+    "exceed40": " no puede exceder los 40 caracteres",
+    "exactly8": " tiene que ser 8 caracteres exactos",
+    "exactly22": " tiene que ser 22 caracteres exactos",
+    
+
+
+    "_comment3": "CRIPTO",
+    "criptoName": "Nombre del Cripto: ",
+    "buy": "Comprar",
+    "sell": "Vender",
+    "lastUpdate": "Ultima actualizacion: ",
+    "buySpace": "Comprar ",
+    "howMuchBuy": "Cuanto queres comprar?",
+    "confirm": "Confirmar",
+    "sellSpace": "Vender ",
+    "howMuchSell": "Cuanto queres vender?",
+    
+
+
+    "_comment4": "PUBLICATION",
+    "amountCripto": "Cantidad de Crypto:",
+    "priceCripto": "Precio de Crypto:",
+    "totalPrice": "Precio total:",
+    "fromU": "Del usuario:",
+    "reputation": "Reputacion:",
+    "cancel": "Cancelar",
+    "": "",
+    "": "",
+
+
+
+    "_commentX": "TRANSFERENCE",
+    "reception": "Confirmar recepción",
+    "transaction": "Realice la transferencia",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": ""
+
+}

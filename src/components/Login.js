@@ -2,27 +2,28 @@ import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-
+import { useTranslation } from 'react-i18next';   
 import AuthService from "../services/auth.service";
-
-const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
 
 const Login = (props) => {
   const form = useRef();
   const checkBtn = useRef();
-
+  const {t} = useTranslation();   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+
+  
+  const required = (value) => {
+    if (!value) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          {t('required')}
+        </div>
+      );
+    }
+  };
 
   const onChangeEmail = (e) => {
     const email = e.target.value;
@@ -76,7 +77,7 @@ const Login = (props) => {
 
         <Form onSubmit={handleLogin} ref={form}>
           <div className="form-group">
-            <label htmlFor="mail">Email</label>
+            <label htmlFor="mail">{t('email')}</label>
             <Input
               type="text"
               className="form-control"
@@ -88,7 +89,7 @@ const Login = (props) => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">{t('password')}</label>
             <Input
               type="password"
               className="form-control"
@@ -104,7 +105,7 @@ const Login = (props) => {
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}
-              <span>Login</span>
+              <span>{t('logIn')}</span>
             </button>
           </div>
 

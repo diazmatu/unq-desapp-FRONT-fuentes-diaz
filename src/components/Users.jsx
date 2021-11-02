@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useCallback} from 'react'
 import {User} from './User.jsx'
 import { Row, Col } from 'react-simple-flex-grid';
 import "../App.css";
@@ -10,24 +10,23 @@ const Users = () => {
     const [activeUsers, setActiveUsers]= useState([])
     const currentUser = AuthService.getCurrentUser();
     
-    useEffect(() => {
-        const fetchData = async () => {
-            const users = await AuthService.getUsers()
-            deleteSelf(users.data)                          
-        }
-        fetchData()
-    }, [setActiveUsers])
-
-
-    const deleteSelf = (users) => {
+    const deleteSelf = useCallback((users) => {
         setActiveUsers(
             users.filter(function(user){
-            console.log(user.userName)
-            console.log(currentUser.userName)
-            return user.userName != currentUser.userName
-            })
-        )
-    }
+                return user.userName !== currentUser.userName
+            }))
+      }, [currentUser.userName]) 
+ 
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await AuthService.getUsers()
+            .then((response) => {
+                deleteSelf(response.data) 
+            })                        
+        }
+        fetchData()
+    }, [deleteSelf, setActiveUsers])
 
     return (
         <Row className='container' gutter={40} justify-content= {'flex-start'}>

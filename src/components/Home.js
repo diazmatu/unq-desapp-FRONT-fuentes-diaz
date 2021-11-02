@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Home = () => {
-  const [content, setContent] = useState("");
-/*
+/* const [content, setContent] = useState("");
+
   useEffect(() => {
     UserService.getPublicContent().then(
       (response) => {
@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <div className="container">
       <header className="jumbotron">
-        <h3>{content}</h3>
+        <h3>HOME</h3>
       </header>
     </div>
   );

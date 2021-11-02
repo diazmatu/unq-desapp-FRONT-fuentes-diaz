@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import UserService from "../services/user.service";
 import Modal from 'react-bootstrap/Modal';
 import {useHistory} from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+
 
 export const BuyModal = (props) => {
+  const {t} = useTranslation();
   const history = useHistory();
   const [buyValue, setBuyValue] = useState(0);
 
@@ -13,12 +16,12 @@ export const BuyModal = (props) => {
 
   const publicateBuy = () =>{
     props.onHide()
-    if(buyValue!=0){
-      debugger
+    if(buyValue!==0){
+      //debugger
       const finalPrice = buyValue * props.crypto_price
       UserService.publicateCryptoBuy(props.crypto_name, buyValue, finalPrice).then(
         (response) => {
-          history.push("/activePublication");
+          history.push("/publications");
           window.location.reload();
         }
       );
@@ -41,11 +44,11 @@ export const BuyModal = (props) => {
           >
           <Modal.Header closeButton>
               <Modal.Title id="example-modal-sizes-title-sm">
-              Buy {props.name}
+              {t('buySpace')} {props.name}
               </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-              <label htmlFor="basic-url" className="form-label">How much do you want to buy?</label>
+              <label htmlFor="basic-url" className="form-label">{t('howMuchBuy')}</label>
               <div className="input-group mb-3">
               <span className="input-group-text">$</span>
               <input
@@ -58,7 +61,7 @@ export const BuyModal = (props) => {
               </div>
           </Modal.Body>
           <Modal.Footer>
-              <button href="#" className="btn btn-success" onClick={publicateBuy}>Confirm</button>
+              <button href="#" className="btn btn-success" onClick={publicateBuy}>{t('confirm')}</button>
           </Modal.Footer>
       </Modal>
     </>
@@ -66,16 +69,17 @@ export const BuyModal = (props) => {
 };
 
 export const SellModal = (props) => {
+  const {t} = useTranslation();
   const history = useHistory();
   const [sellValue, setSellValue] = useState(0);
 
   const publicateSell = () =>{
     props.onHide()
-    if(sellValue!=0){
+    if(sellValue!==0){
       const finalPrice = sellValue * props.crypto_price
       UserService.publicateCryptoSell(props.crypto_name, sellValue, finalPrice).then(
         (response) => {
-          history.push("/activePublication");
+          history.push("/publications");
           window.location.reload();
         }
       );
@@ -97,11 +101,11 @@ export const SellModal = (props) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="example-modal-sizes-title-sm">
-          Sell {props.name}
+          {t('sellSpace')}{props.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <label htmlFor="basic-url" className="form-label">How much do you want to sell?</label>
+        <label htmlFor="basic-url" className="form-label">{t('howMuchSell')}</label>
         <div className="input-group mb-3">
           <span className="input-group-text">$</span>
           <input
@@ -114,10 +118,12 @@ export const SellModal = (props) => {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <button className="btn btn-success" onClick={publicateSell}>Confirm</button>
+        <button className="btn btn-success" onClick={publicateSell}>{t('confirm')}</button>
       </Modal.Footer>
     </Modal>
   );
 };
 
-export default {BuyModal, SellModal}
+const modals = {BuyModal, SellModal}
+
+export default modals

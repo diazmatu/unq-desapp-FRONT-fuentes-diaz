@@ -1,6 +1,14 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/auth/";
+const API_URL = "http://localhost:8080/";
+
+const token = JSON.parse(localStorage.getItem("user")).token
+
+const headers= {
+  headers:{
+    Authorization: 'Bearer '+ token
+  }
+}
 
 const register = (userData) => {
   return axios
@@ -16,7 +24,7 @@ const register = (userData) => {
       "rols" : ["user"]
     })
     .then((response) => {
-      debugger;
+      //debugger;
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
@@ -41,21 +49,28 @@ const login = (username, password) => {
 };
 
 const getUsers = () => {
-  return axios.get(API_URL + "users");
+  return axios.get(API_URL + "auth/users", headers);
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.removeItem("user", headers);
 };
 
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
 
-export default {
+const getUser = (userName) =>{
+  return userName//axios.get(API_URL + "auth/users/" + userName, headers);
+}
+
+const authService = {
   register,
   login,
   logout,
   getCurrentUser,
-  getUsers
+  getUsers,
+  getUser
 };
+
+export default authService

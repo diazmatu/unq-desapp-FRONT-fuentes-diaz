@@ -1,0 +1,86 @@
+{
+    "language": "Language",
+
+    
+
+    "_comment1": "NAVBAR",
+    "logOut": "Log Out",
+    "logIn": "Login",
+    "signUp": "Sign Up",
+    "home": "Home",
+    "publications": "Publications",
+    "users": "Users",
+    "activeCripto": "Active Cripto",
+    "transactions": "Transactions",
+    
+
+
+    "_comment2": "LOGIN & REGISTER",
+    "register": "Register",
+    "resetData": "Reset",
+    "required": "This field is required!",
+    "email": "Email",
+    "password": "Password",
+
+    "name": "Name",
+    "surname": "Surname",
+    "userName": "User name",
+    "address": "Address",
+    "confirmPassword": "Confirm Password",
+    "cvuMP": "CVU MercadoPago",
+    "criptoWallet": "Cripto Wallet",
+    "theCriptoWallet": "The Cripto Wallet",
+    "acceptTerms": "Accept Terms",
+    "agreed": "I have read and agree to the ",
+    "terms": "Terms",
+    
+    "isRequired": " is required",
+    "isInvalid": " is invalid",
+    "notmatch": " does not match",
+    "least0": " must be at least 0 characters",
+    "least6": " must be at least 6 characters",
+    "least10": " must be at least 10 characters",
+    "exceed30": " must not exceed 30 characters",
+    "exceed40": " must not exceed 40 characters",
+    "exactly8": " must be exactly 8 characters",
+    "exactly22": " must be exactly 22 characters",
+    
+
+
+    "_comment3": "CRIPTO",
+    "criptoName": "Cripto Name: ",
+    "buy": "Buy",
+    "sell": "Sell",
+    "lastUpdate": "Last update: ",
+    "buySpace": "Buy ",
+    "howMuchBuy": "How much do you want to buy?",
+    "confirm": "Confirm",
+    "sellSpace": "Sell ",
+    "howMuchSell": "How much do you want to sell?",
+    
+
+
+    "_comment4": "PUBLICATION",
+    "amountCripto": "Amount of crypto:",
+    "priceCripto": "Price of crypto:",
+    "totalPrice": "Total price:",
+    "fromU": "From user:",
+    "reputation": "Reputation:",
+    "cancel": "Cancel",
+    "": "",
+    "": "",
+
+
+
+    "_commentX": "TRANSFERENCE",
+    "reception": "Confirm reception",
+    "transaction": "Transferencer complete",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": ""
+
+}
