@@ -1,6 +1,8 @@
 {
     "language": "Language",
-
+    "currency": "Currency",
+    "positive": "The cuantity must be positive",
+    
     
 
     "_comment1": "NAVBAR",
@@ -12,6 +14,7 @@
     "users": "Users",
     "activeCripto": "Active Cripto",
     "transactions": "Transactions",
+    "emptyList": "There are no more ",
     
 
 

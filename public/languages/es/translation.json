@@ -1,5 +1,7 @@
 {
     "language": "Lenguage",
+    "currency": "Moneda",
+    "positive": "El valor debe ser positivo",
 
     
 
@@ -11,7 +13,9 @@
     "publications": "Publicaciones",
     "users": "Usuarios",
     "activeCripto": "Cripto Activas",
-    
+    "transactions": "Transacciones",
+    "emptyList": "No hay mas ",
+
 
 
     "_comment2": "LOGIN & REGISTER",

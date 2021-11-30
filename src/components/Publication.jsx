@@ -3,17 +3,22 @@ import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 import {useHistory} from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import localeService from "../services/locale.service";
 
 export const Publication = (publi) => {
     const history = useHistory();
     const publication = publi.publication;
     const [decryptName, setDecryptName] = useState('');
     const [hour, setHour]= useState("")
+    const [priceDollar, setPriceDollar] = useState(1);
     const currentUser = AuthService.getCurrentUser();
     const {t} = useTranslation();
 
     useEffect(() => {
         setDecryptName(UserService.decryptCryptoName(publication.cryptoName))
+        if (localStorage.getItem("locale") === "en-US"){
+            setPriceDollar(106.41)
+        } else {setPriceDollar(1)}
         setHour(publication.date.substr(publication.date.length - 8))
     }, [publication])
 
@@ -56,6 +61,10 @@ export const Publication = (publi) => {
           );
     }
 
+    const transform = (price) =>{
+        return localeService.currencyLocale(price / priceDollar)
+    }
+
     return (
         <>
         <div className="card text-center">
@@ -66,15 +75,15 @@ export const Publication = (publi) => {
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item d-flex justify-content-between align-items-start">
                             {t('amountCripto')}
-                            <span className="badge bg-secondary rounded-pill">{publication.amountOfCrypto}</span>
+                            <span className="badge bg-secondary rounded-pill">{localeService.numLocale(publication.amountOfCrypto)}</span>
                         </li>
                         <li className="list-group-item d-flex justify-content-between align-items-start">
                             {t('priceCripto')}
-                            <span className="badge bg-secondary rounded-pill">{publication.priceOfCrypto}</span>
+                            <span className="badge bg-secondary rounded-pill">{transform(publication.priceOfCrypto)}</span>
                         </li>
                         <li className="list-group-item d-flex justify-content-between align-items-start">
                             {t('totalPrice')}
-                            <span className="badge bg-secondary rounded-pill">{publication.priceTotalInPesos}</span>
+                            <span className="badge bg-secondary rounded-pill">{transform(publication.priceTotalInPesos)}</span>
                         </li>
                         <li className="list-group-item d-flex justify-content-between align-items-start">
                             {t('fromU')}

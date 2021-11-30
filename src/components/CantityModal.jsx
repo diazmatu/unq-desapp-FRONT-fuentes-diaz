@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import UserService from "../services/user.service";
 import Modal from 'react-bootstrap/Modal';
 import {useHistory} from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
-
 export const BuyModal = (props) => {
+  const form = useRef();
   const {t} = useTranslation();
   const history = useHistory();
   const [buyValue, setBuyValue] = useState(0);
+  const [hidden, setHidden] = useState(true)
 
   useEffect(() => {
     setBuyValue(0);
   }, []);
 
-  const publicateBuy = () =>{
-    props.onHide()
-    if(buyValue!==0){
-      //debugger
+  const publicateBuy = () =>{    
+    if(buyValue>0){
+      props.onHide()
       const finalPrice = buyValue * props.crypto_price
       UserService.publicateCryptoBuy(props.crypto_name, buyValue, finalPrice).then(
         (response) => {
@@ -26,7 +26,7 @@ export const BuyModal = (props) => {
         }
       );
       setBuyValue(0)
-    }
+    }else{setHidden(false)}
   }
 
   const onChangeValue = (e) => {
@@ -41,7 +41,7 @@ export const BuyModal = (props) => {
           size="sm"
           centered
           aria-labelledby="example-modal-sizes-title-sm"
-          >
+      >
           <Modal.Header closeButton>
               <Modal.Title id="example-modal-sizes-title-sm">
               {t('buySpace')} {props.name}
@@ -49,15 +49,18 @@ export const BuyModal = (props) => {
           </Modal.Header>
           <Modal.Body>
               <label htmlFor="basic-url" className="form-label">{t('howMuchBuy')}</label>
-              <div className="input-group mb-3">
+              <div className="input-group mb-3" >
               <span className="input-group-text">$</span>
-              <input
+              <input ref={form}
                   type="text"
                   className="form-control"
                   aria-label="Amount (to the nearest dollar)"
                   name="sellValue"
                   value={buyValue}
-                  onChange={onChangeValue} />
+                  onChange={onChangeValue}/>
+              </div>
+              <div className="alert alert-danger" role="alert" hidden={hidden}>
+                {t('positive')}
               </div>
           </Modal.Body>
           <Modal.Footer>
@@ -72,10 +75,11 @@ export const SellModal = (props) => {
   const {t} = useTranslation();
   const history = useHistory();
   const [sellValue, setSellValue] = useState(0);
+  const [hidden, setHidden] = useState(true)
 
   const publicateSell = () =>{
-    props.onHide()
-    if(sellValue!==0){
+    if(sellValue>0){
+      props.onHide()
       const finalPrice = sellValue * props.crypto_price
       UserService.publicateCryptoSell(props.crypto_name, sellValue, finalPrice).then(
         (response) => {
@@ -84,7 +88,7 @@ export const SellModal = (props) => {
         }
       );
       setSellValue(0)
-    }
+    }else{setHidden(false)}
   }
 
   const onChangeValue = (e) => {
@@ -115,6 +119,9 @@ export const SellModal = (props) => {
             name="sellValue"
             value={sellValue}
             onChange={onChangeValue} />
+        </div>
+        <div className="alert alert-danger" role="alert" hidden={hidden}>
+          {t('positive')}
         </div>
       </Modal.Body>
       <Modal.Footer>

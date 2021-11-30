@@ -2,11 +2,15 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8080/";
 
-const token = JSON.parse(localStorage.getItem("user")).token
+const getToken = () =>{
+  if (localStorage.getItem("user")){
+    return JSON.parse(localStorage.getItem("user")).token
+  }
+}
 
 const headers= {
   headers:{
-    Authorization: 'Bearer '+ token
+    Authorization: 'Bearer '+ getToken()
   }
 }
 
@@ -24,7 +28,6 @@ const register = (userData) => {
       "rols" : ["user"]
     })
     .then((response) => {
-      //debugger;
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
@@ -39,11 +42,9 @@ const login = (username, password) => {
       "password" : password
     })
     .then((response) => {
-      //debugger;
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
-
       return response.data;
     });
 };
@@ -57,11 +58,18 @@ const logout = () => {
 };
 
 const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
+  var user = {userName:""}
+  if (localStorage.getItem("user")){
+    var userName = JSON.parse(localStorage.getItem("user")).userName
+    user = axios.get(API_URL + "auth/users/" + userName, headers);
+    //debugger
+  }
+  return user
 };
 
 const getUser = (userName) =>{
-  return userName//axios.get(API_URL + "auth/users/" + userName, headers);
+  //debugger
+  return axios.get(API_URL + "auth/users/" + userName, headers);
 }
 
 const authService = {
@@ -70,7 +78,8 @@ const authService = {
   logout,
   getCurrentUser,
   getUsers,
-  getUser
+  getUser,
+  getToken
 };
 
 export default authService

@@ -63,8 +63,9 @@ const Register = () => {
     console.log(userData)
       AuthService.register(userData).then(
           (response) => {
-            setMessage(response.data.message);
-            setSuccessful(true);
+            //debugger
+            //setMessage(response.data.message);
+            //setSuccessful(true);
             history.push("/activeCripto")
             window.location.reload();
           },

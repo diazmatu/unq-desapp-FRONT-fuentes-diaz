@@ -3,25 +3,40 @@ import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 import {useHistory} from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import localeService from "../services/locale.service";
 
 export const Transaction = (trans) => {
     const history = useHistory();
     const transaction = trans.transaction;
     const [decryptName, setDecryptName] = useState('');
     const [hour, setHour] = useState("")
-    const [publisher, setPublisher] = useState('')
-    const currentUser = AuthService.getCurrentUser();
+    const [publisher, setPublisher] = useState({})
+    const [priceDollar, setPriceDollar] = useState(1);
+    const [currentUser, setCurrent] = useState({})
     const {t} = useTranslation();
 
     useEffect(() => {
         console.log(transaction)
+        if (localStorage.getItem("locale") === "en-US"){
+            setPriceDollar(106.41)
+        } else {setPriceDollar(1)}
         setDecryptName(UserService.decryptCryptoName(transaction.cryptoName))
         setHour(transaction.date.substr(transaction.date.length - 8))
-        setPublisher(AuthService.getUser(transaction.userNamePublisher))
+        const fetchData = async () => {
+            const currentUser = await AuthService.getCurrentUser();
+            const publisher = await AuthService.getUser(transaction.userNamePublisher)
+            setPublisher(publisher.data)
+            setCurrent(currentUser.data)
+            console.log(publisher.data)
+            console.log(currentUser.data)
+            //debugger
+        }
+        fetchData()
         //debugger
-    }, [transaction, publisher])
+    }, [transaction])
 
     const ClientButtons = () => {
+        debugger
         return(
             <>
                 {transaction.userName === currentUser.userName ?(
@@ -59,6 +74,10 @@ export const Transaction = (trans) => {
               window.location.reload();
             }
           );
+        }
+
+    const transform = (price) =>{
+        return localeService.currencyLocale(price / priceDollar)
     }
 
     return (
@@ -71,15 +90,15 @@ export const Transaction = (trans) => {
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item d-flex justify-content-between align-items-start">
                             {t('amountCripto')}
-                            <span className="badge bg-secondary rounded-pill">{transaction.amountOfCryptoToBuy}</span>
+                            <span className="badge bg-secondary rounded-pill">{localeService.numLocale(transaction.amountOfCryptoToBuy)}</span>
                         </li>
                         <li className="list-group-item d-flex justify-content-between align-items-start">
                             {t('priceCripto')}
-                            <span className="badge bg-secondary rounded-pill">{transaction.amountOfCrypto}</span>
+                            <span className="badge bg-secondary rounded-pill">{transform(transaction.amountOfCrypto)}</span>
                         </li>
                         <li className="list-group-item d-flex justify-content-between align-items-start">
                             {t('totalPrice')}
-                            <span className="badge bg-secondary rounded-pill">{transaction.priceTotalInPesos}</span>
+                            <span className="badge bg-secondary rounded-pill">{transform(transaction.priceTotalInPesos)}</span>
                         </li>
                         <li className="list-group-item d-flex justify-content-between align-items-start">
                             {t('fromU')}
@@ -92,9 +111,9 @@ export const Transaction = (trans) => {
 
                         <li className="list-group-item d-flex justify-content-between align-items-start">
                             {transaction.type === "venta" ?(
-                                <>{t('cvuMP')}{': CVU-'}{publisher}</>
+                                <>{t('cvuMP')}{": "}{publisher.cvu}</>
                             ) : (
-                                <>{t('criptoWallet')}{': CriptoWallet-'}{transaction.criptoWallet}</>
+                                <>{t('criptoWallet')}{currentUser.criptoWallet}</>
                             )}
                         </li>
                     </ul>

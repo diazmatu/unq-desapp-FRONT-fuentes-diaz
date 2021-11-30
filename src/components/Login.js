@@ -14,7 +14,6 @@ const Login = (props) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  
   const required = (value) => {
     if (!value) {
       return (

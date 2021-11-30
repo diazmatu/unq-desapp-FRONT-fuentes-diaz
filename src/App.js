@@ -17,6 +17,7 @@ import Users from "./components/Users";
 import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
 import LanguageSelector from "./components/LanguageSelector";
+import LocaleSelector from "./components/LocaleSelector";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -24,6 +25,9 @@ const App = () => {
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
+    
+    const savedLocale = localStorage.getItem("locale") || "en-US"
+    localStorage.setItem("locale",savedLocale );
 
     if (user) {
       setCurrentUser(user);
@@ -111,6 +115,7 @@ const App = () => {
           </div>
         )}
         <LanguageSelector/>
+        <LocaleSelector/>
       </nav>
 
       <div className="container mt-3">
