@@ -16,15 +16,13 @@ export const Transaction = (trans) => {
     const {t} = useTranslation();
 
     useEffect(() => {
-        console.log(transaction)
-        if (localStorage.getItem("locale") === "en-US"){
-            setPriceDollar(106.41)
-        } else {setPriceDollar(1)}
         setDecryptName(UserService.decryptCryptoName(transaction.cryptoName))
         setHour(transaction.date.substr(transaction.date.length - 8))
         const fetchData = async () => {
             const currentUser = await AuthService.getCurrentUser();
             const publisher = await AuthService.getUser(transaction.userNamePublisher)
+            const dollar = await UserService.getDollarActual()
+            setPriceDollar(dollar.data)
             setPublisher(publisher.data)
             setCurrent(currentUser.data)
             console.log(publisher.data)
@@ -77,7 +75,7 @@ export const Transaction = (trans) => {
         }
 
     const transform = (price) =>{
-        return localeService.currencyLocale(price / priceDollar)
+        return localeService.currencyLocale(price / priceDollar.venta)
     }
 
     return (

@@ -8,23 +8,25 @@ export const Cripto = ({name, price, date}) => {
   const {t} = useTranslation();
   const [buyModal, setBuyModal] = useState(false);
   const [sellModal, setSellModal] = useState(false);
-  const [priceDollar, setPriceDollar] = useState(1);
+  const [priceDollar, setPriceDollar] = useState({});
   const [decryptName, setDecryptName] = useState('');
   const [cost, setCost] = useState(price)
   const [hour, setHour]= useState("")
 
   useEffect(() => {
     const fetchData = async () => {
-        const price = await UserService.getDollarActual()
-        setPriceDollar(price)
-        //debugger
+        const dollar = await UserService.getDollarActual()
+        setPriceDollar(dollar.data)
+        console.log(priceDollar)
+        debugger
     }
     fetchData()
 
     setDecryptName(UserService.decryptCryptoName(name))
-    setCost(localeService.currencyLocale(price / priceDollar))
+    //debugger
+    setCost(localeService.currencyLocale(price / priceDollar.venta))
     setHour(date.substr(date.length - 8))
-  }, [date, name, price, priceDollar])
+  }, [date, name])
 
   return (
     <>

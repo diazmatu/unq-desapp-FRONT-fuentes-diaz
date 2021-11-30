@@ -1,3 +1,5 @@
+import userService from "../services/user.service";
+
 const locale = localStorage.getItem("locale")
 
 const dateLocale = (date) => {
@@ -9,7 +11,7 @@ const numLocale = (number) => {
 }
 
 const currencyLocale = (number) => {
-
+    
     var result
     switch (locale) {
         case 'en-US':

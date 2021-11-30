@@ -79,14 +79,14 @@ const transactionCryptoBuy = (publi) => {
     "priceTotalInPesos" : publi.priceTotalInPesos,
     "type" : "compra"
 }
-//debugger
+debugger
   return axios
     .post(API_URL + "transaction/addT/"+ publi.id, trans, headers);
 };
 
 const transactionCryptoSell = (publi) => {
   const trans = {
-    "userNamePublisher" : publi.userName,//Publisher
+    "user_name_publisher" : publi.userName,//Publisher
     "userNameClient" : userName,//Client
     "cryptoName" : publi.cryptoName,
     "amountOfCrypto" : publi.amountOfCrypto,
